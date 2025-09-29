@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Marvel Coffee Invite</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Bebas Neue', sans-serif;
+      background: radial-gradient(circle at center, #0c0c0c 0%, #000 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 50px;
+      color: #e62429;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px #e62429, 0 0 25px #ff0000;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #0000ff;
+    }
+
+    button {
+      padding: 15px 40px;
+      margin: 15px;
+      font-size: 22px;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .yes {
+      background: #e62429;
+      color: #fff;
+      box-shadow: 0 0 15px #e62429;
+    }
+
+    .yes:hover {
+      background: #ff1e2d;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #e62429, 0 0 40px #ff0000;
+    }
+
+    .no {
+      background: #0055ff;
+      color: #fff;
+      box-shadow: 0 0 15px #0055ff;
+    }
+
+    .no:hover {
+      background: #0077ff;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #0055ff, 0 0 40px #00aaff;
+    }
+
+    .bg-effect {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        #e62429,
+        #000,
+        #0055ff,
+        #000,
+        #e62429
+      );
+      animation: spin 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .response {
+      margin-top: 30px;
+      font-size: 22px;
+      max-width: 500px;
+      line-height: 1.4;
+      text-shadow: 0 0 10px #000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .response img {
+      max-width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-effect"></div>
+  <div class="title">ASSEMBLE!</div>
+  <h1>Выпьем кофе?</h1>
+  <button class="yes" onclick="showYes()">ДА</button>
+  <button class="no" onclick="showRandomResponse()">НЕТ</button>
+
+  <div id="response" class="response">
+    <p id="responseText"></p>
+    <img id="meme" src="" alt="Marvel meme">
+  </div>
+
+  <script>
+    const responses = [
+      {
+        text: "Капитан Америка сказал бы: «Я могу делать это весь день!» 💪",
+        image: "https://static0.srcdn.com/wordpress/wp-content/uploads/2020/05/QOAittf9.jpeg"
+      },
+      {
+        text: "Тони Старк уже оплатил кофе, назад дороги нет 😎",
+        image: "https://i.pinimg.com/474x/5e/e1/84/5ee184f63b0aa9de757c71ab7ffc0328.jpg"
+      },
+      {
+        text: "Доктор Стрэндж посмотрел 14 000 605 вариантов — и только в одном ты отказался",
+        image: "https://images.squarespace-cdn.com/content/v1/62a26e594e7d2c3bea5a6304/1658859632479-MOMEK8ZHBLYQECOPUHZF/Dr.+Strange+One+Meme+2.png"
+      },
+      {
+        text: "Халк не одобряет...",
+        image: "https://images7.memedroid.com/images/UPLOADED188/569f36f280758.jpeg"
+      },
+      {
+        text: "Даже Локи не отказался бы🌀",
+        image: "https://pbs.twimg.com/media/Eez3M-LU0AE33UE.jpg"
+      }
+    ];
+
+    function showYes() {
+      const responseBox = document.getElementById("response");
+      const responseText = document.getElementById("responseText");
+      const meme = document.getElementById("meme");
+
+      responseText.textContent = "Отлично! Тогда увидимся ☕💥";
+      meme.style.display = "none";
+      responseBox.style.display = "flex";
+    }
+
+    function showRandomResponse() {
+      const random = responses[Math.floor(Math.random() * responses.length)];
+      const responseBox = document.getElementById("response");
+      const responseText = document.getElementById("responseText");
+      const meme = document.getElementById("meme");
+
+      responseText.textContent = random.text;
+      meme.src = random.image;
+      meme.style.display = "block";
+      responseBox.style.display = "flex";
+    }
+  </script>
+</body>
+</html>

@@ -93,12 +93,22 @@
       100% { transform: rotate(360deg); }
     }
 
-    img {
-      max-width: 200px;
-      margin-top: 20px;
+    .response {
+      margin-top: 30px;
+      font-size: 22px;
+      max-width: 500px;
+      line-height: 1.4;
+      text-shadow: 0 0 10px #000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .response img {
+      max-width: 250px;
       border-radius: 12px;
       box-shadow: 0 0 15px #000;
-      display: none;
     }
   </style>
 </head>
@@ -106,37 +116,59 @@
   <div class="bg-effect"></div>
   <div class="title">ASSEMBLE!</div>
   <h1>Выпьем кофе?</h1>
-  <button class="yes" onclick="alert('Отлично! Тогда  увидимся☕💥')">ДА</button>
+  <button class="yes" onclick="showYes()">ДА</button>
   <button class="no" onclick="showRandomResponse()">НЕТ</button>
 
-  <img id="meme" src="" alt="Marvel meme">
+  <div id="response" class="response">
+    <p id="responseText"></p>
+    <img id="meme" src="" alt="Marvel meme">
+  </div>
 
   <script>
     const responses = [
-      "Капитан Америка сказал бы: «Я могу делать это весь день!» 💪",
-      "Тони Старк уже оплатил кофе, назад дороги нет 😎",
-      "Доктор Стрэндж посмотрел 14 000 605 вариантов — и только в одном ты отказался",
-      "Халк не одобряет...",
-      "Даже Локи не отказался бы🌀"
+      {
+        text: "Капитан Америка сказал бы: «Я могу делать это весь день!» 💪",
+        image: "https://static0.srcdn.com/wordpress/wp-content/uploads/2020/05/QOAittf9.jpeg"
+      },
+      {
+        text: "Тони Старк уже оплатил кофе, назад дороги нет 😎",
+        image: "https://i.pinimg.com/474x/5e/e1/84/5ee184f63b0aa9de757c71ab7ffc0328.jpg"
+      },
+      {
+        text: "Доктор Стрэндж посмотрел 14 000 605 вариантов — и только в одном ты отказался",
+        image: "https://images.squarespace-cdn.com/content/v1/62a26e594e7d2c3bea5a6304/1658859632479-MOMEK8ZHBLYQECOPUHZF/Dr.+Strange+One+Meme+2.png"
+      },
+      {
+        text: "Халк не одобряет...",
+        image: "https://images7.memedroid.com/images/UPLOADED188/569f36f280758.jpeg"
+      },
+      {
+        text: "Даже Локи не отказался бы🌀",
+        image: "https://pbs.twimg.com/media/Eez3M-LU0AE33UE.jpg"
+      }
     ];
 
-    const memes = [
-      "https://i.pinimg.com/474x/5e/e1/84/5ee184f63b0aa9de757c71ab7ffc0328.jpg", // Tony Stark meme
-      "https://pbs.twimg.com/media/Eez3M-LU0AE33UE.jpg", // Loki meme
-      "https://images7.memedroid.com/images/UPLOADED188/569f36f280758.jpeg", // Hulk meme
-      "https://static0.srcdn.com/wordpress/wp-content/uploads/2020/05/QOAittf9.jpeg", // Cap meme
-    ];
+    function showYes() {
+      const responseBox = document.getElementById("response");
+      const responseText = document.getElementById("responseText");
+      const meme = document.getElementById("meme");
+
+      responseText.textContent = "Отлично! Тогда увидимся ☕💥";
+      meme.style.display = "none";
+      responseBox.style.display = "flex";
+    }
 
     function showRandomResponse() {
-      const randomText = responses[Math.floor(Math.random() * responses.length)];
-      alert(randomText);
-
+      const random = responses[Math.floor(Math.random() * responses.length)];
+      const responseBox = document.getElementById("response");
+      const responseText = document.getElementById("responseText");
       const meme = document.getElementById("meme");
+
+      responseText.textContent = random.text;
+      meme.src = random.image;
       meme.style.display = "block";
-      meme.src = memes[Math.floor(Math.random() * memes.length)];
+      responseBox.style.display = "flex";
     }
   </script>
 </body>
-
 </html>
-

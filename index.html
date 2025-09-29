@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Marvel Coffee Invite</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Bebas Neue', sans-serif;
+      background: radial-gradient(circle at center, #0c0c0c 0%, #000 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 50px;
+      color: #e62429;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px #e62429, 0 0 25px #ff0000;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #0000ff;
+    }
+
+    button {
+      padding: 15px 40px;
+      margin: 15px;
+      font-size: 22px;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .yes {
+      background: #e62429;
+      color: #fff;
+      box-shadow: 0 0 15px #e62429;
+    }
+
+    .yes:hover {
+      background: #ff1e2d;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #e62429, 0 0 40px #ff0000;
+    }
+
+    .no {
+      background: #0055ff;
+      color: #fff;
+      box-shadow: 0 0 15px #0055ff;
+    }
+
+    .no:hover {
+      background: #0077ff;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #0055ff, 0 0 40px #00aaff;
+    }
+
+    .bg-effect {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        #e62429,
+        #000,
+        #0055ff,
+        #000,
+        #e62429
+      );
+      animation: spin 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    img {
+      max-width: 200px;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #000;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-effect"></div>
+  <div class="title">ASSEMBLE!</div>
+  <h1>Если бы Мстители пригласили тебя...  
+  пойдёшь со мной на кофе?</h1>
+  <button class="yes" onclick="alert('Отлично! Тогда  увидимся☕💥')">ДА</button>
+  <button class="no" onclick="showRandomResponse()">НЕТ</button>
+
+  <img id="meme" src="" alt="Marvel meme">
+
+  <script>
+    const responses = [
+      "Капитан Америка сказал бы: «Я могу делать это весь день!» 💪",
+      "Тони Старк уже оплатил кофе, назад дороги нет 😎",
+      "Доктор Стрэндж посмотрел 14 000 605 вариантов — и только в одном ты отказался",
+      "Халк не одобряет...",
+      "Даже Локи не отказался бы🌀"
+    ];
+
+    const memes = [
+      "https://i.imgflip.com/5xw3xk.jpg", // Tony Stark meme
+      "https://i.imgflip.com/4/2wifvo.jpg", // Loki meme
+      "https://i.imgflip.com/4/3oevdk.jpg", // Hulk meme
+      "https://i.imgflip.com/4/5bdp2z.jpg", // Cap meme
+    ];
+
+    function showRandomResponse() {
+      const randomText = responses[Math.floor(Math.random() * responses.length)];
+      alert(randomText);
+
+      const meme = document.getElementById("meme");
+      meme.style.display = "block";
+      meme.src = memes[Math.floor(Math.random() * memes.length)];
+    }
+  </script>
+</body>
+</html>
